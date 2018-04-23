@@ -1,4 +1,4 @@
-@import url(http://fonts.googleapis.com/css?family=Shadows+Into+Light);
+@import url(https://fonts.googleapis.com/css?family=Roboto);
 
 body,
 html,
@@ -14,39 +14,34 @@ body {
 }
 
 div.board {
-    background-color: #e6e6e6;
+    background-color: #e8e8e8;
     width: 100%;
     height: 1000px;
-    background: #d5ec6c;
-    background: -moz-radial-gradient(center, ellipse cover, #eab92d 57%, #c79810 99%);
-    background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(57%, #eab92d), color-stop(99%, #c79810));
-    background: -webkit-radial-gradient(center, ellipse cover, #eab92d 57%, #c79810 99%);
-    background: -o-radial-gradient(center, ellipse cover, #eab92d 57%, #c79810 99%);
-    background: -ms-radial-gradient(center, ellipse cover, #eab92d 57%, #c79810 99%);
-    background: radial-gradient(ellipse at center, #eab92d 57%, #c79810 99%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#eab92d', endColorstr='#c79810', GradientType=1);
-
 }
 
 div.note {
-    height: 150px;
-    width: 150px;
-    background-color: yellow;
-    margin: 2px;
-    position: absolute;
-    cursor: -webkit-grab;
+    height: auto;
+    /* background-color: #cfd8dc; */
+    background-color: #80d8ff;
+    margin: 5px;
+    position: relative;
+    display: flex;
+    max-width: 400px;
+    min-width: 200px;
+    flex: 1 1;
+    /* cursor: -webkit-grab; */
     box-shadow: 0px 2px 1px 0 rgba(0, 0, 0, .2);
     transition: box-shadow .2s ease-in
 }
 
 div.note:active {
-    cursor: -webkit-grabbing;
+    /* cursor: -webkit-grabbing; */
 }
 
 div.note p {
     font-size: 22px;
     padding: 5px;
-    font-family: "Shadows Into Light", Arial;
+    font-family: 'Roboto Slab','Times New Roman',serif;
 }
 
 div.note:hover{
@@ -75,9 +70,32 @@ div.note > textarea {
 }
 
 div.board button {
-  color: #fff;
-  font-size: 14px;
-  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.55);
+  font-size: 18px;
+  /* box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.55); */
+}
+
+div.notes__wrapper{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-content: center;
+    margin: 0 auto;
+}
+
+button {
+    background: none;
+    border: 0;
+    padding: 5px;
+    opacity: 0.4;
+    transition: opacity 0.2s ease-in;
+}
+
+button:hover {
+    opacity: 1;
+}
+
+button:not(:last-child) {
+    margin-right:5px; 
 }
 
 #add {
@@ -85,7 +103,7 @@ div.board button {
   height: 3em;
 }
 
-#edit {
+/* #edit {
   background-color: #337ab7;
 }
 
@@ -95,4 +113,4 @@ div.board button {
 
 #remove {
   background-color: #d9534f;
-}
+} */
