@@ -4,5 +4,5 @@ import './index.css';
 import Note from './Note'
 import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<Note />, document.getElementById('root'));
 registerServiceWorker();
