@@ -1,0 +1,14 @@
+nav {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+}
+
+nav:nth-child(n){
+  display: flex;
+  flex: 0 0 100px;
+} 
+
+nav:last-child {
+  flex: 1 0 300px
+} 
