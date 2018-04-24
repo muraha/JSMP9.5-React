@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Note from './Note'
+import MdAdd from 'react-icons/lib/md/note-add'
 
 export default class Board extends Component{
   constructor(props) {
@@ -39,7 +40,7 @@ export default class Board extends Component{
 	nextId = () => {
 		this.uniqueId = this.uniqueId || 0
 		return this.uniqueId++
-	}
+  }
 
   update = (newText, i) => {
     this.setState(prevState => ({
@@ -69,7 +70,8 @@ export default class Board extends Component{
 		return (
       <div className='board'>
         <button onClick={this.add.bind(null, 'Edit Me')}
-        id='add'>Add Note</button>  
+          id='add'>Create note <MdAdd /></button>
+        <input placeholder='Search'></input>
         <div className='notes__wrapper'>  
 				  {this.state.notes.map(this.eachNote)}
         </div>

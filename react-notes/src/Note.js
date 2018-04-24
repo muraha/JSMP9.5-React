@@ -17,7 +17,7 @@ export default class Note extends Component {
 		this.renderDisplay = this.renderDisplay.bind(this)
 	}
 
-	componentDidUpdate() {
+	componentDidUpdate = () => {
 		var textArea
 		if(this.state.editing) {
 			textArea = this._newText
@@ -25,6 +25,9 @@ export default class Note extends Component {
 			textArea.select()
 		}
 	}
+
+	shouldComponentUpdate = (nextProps, nextState) =>
+			this.props.value !== nextProps.value || this.state !== nextState	
 
 	edit = () => {
 		this.setState({
