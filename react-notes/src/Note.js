@@ -17,6 +17,15 @@ export default class Note extends Component {
 		this.renderDisplay = this.renderDisplay.bind(this)
 	}
 
+	componentDidUpdate() {
+		var textArea
+		if(this.state.editing) {
+			textArea = this._newText
+			textArea.focus()
+			textArea.select()
+		}
+	}
+
 	edit = () => {
 		this.setState({
 			editing: true,
@@ -24,35 +33,35 @@ export default class Note extends Component {
 	}
   
 	remove = () => {
-		alert('removing note')
+		this.props.onRemove(this.props.index)
 	}
 
-	save = () => {
-		alert(this._newText.value)
+	save = (e) => {
+		e.preventDefault();
+		this.props.onChange(this._newText.value, this.props.index)
+		this.setState({
+			editing: false,
+		})
 	}
 
-	renderForm = () => {
-		return (
-			<div className="note">
-				<form>
-					<textarea ref={input => this._newText = input}/>
-					<button onClick={this.save}><MdSave /></button>
-				</form>
-			</div>
-		)
-	}
+	renderForm = () => 
+		<div className="note">
+			<form onSubmit={this.save}>
+				<textarea wrap autoFocus ref={input => this._newText = input}
+									defaultValue={this.props.value}/>
+				<button id="save"><MdSave /></button>
+			</form>
+		</div>
+
   
-	renderDisplay = () => {
-		return (
-			<div className="note">
-				<p>{this.props.value}</p>
-				<span>
-					<button onClick={this.edit} id="edit"><MDEdit /></button>
-					<button onClick={this.remove} id="remove"><MdDelete /></button>
-				</span>
-			</div>
-		)
-	}
+	renderDisplay = () => 
+		<div className="note">
+			<p>{this.props.value}</p>
+			<span>
+				<button onClick={this.edit} id="edit"><MDEdit /></button>
+				<button onClick={this.remove} id="remove"><MdDelete /></button>
+			</span>
+		</div>
 
 	render() {
 		return this.state.editing ? this.renderForm() : this.renderDisplay()
