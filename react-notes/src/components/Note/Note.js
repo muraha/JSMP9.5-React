@@ -10,7 +10,7 @@ export default class Note extends Component {
 		super(props)
 		this.state = {
 			isEditable: false,
-			isDone: false,
+			isCompleted: false,
 			isArchived: false,
 		}
 		
@@ -53,9 +53,13 @@ export default class Note extends Component {
 
 	renderForm = () => 
 		<div className="note shadow">
-				<textarea wrap autoFocus ref={input => this._newText = input}
+			<div className="note__container ">
+				<div className="note__item">
+					<textarea wrap autoFocus ref={input => this._newText = input}
 									defaultValue={this.props.value}/>
-				<button onClick={this.save} id="save"><MdSave /></button>
+					<button onClick={this.save} id="save"><MdSave /></button>
+				</div>
+			</div>
 		</div>
 
   

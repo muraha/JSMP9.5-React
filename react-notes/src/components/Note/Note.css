@@ -1,3 +1,4 @@
+/* renderDisplay */
 
 div.notes__wrapper{
   display: flex;
@@ -56,6 +57,9 @@ div.note button:hover {
 div.note button:not(:last-child) {
   margin-right:5px; 
 }
+
+
+/* renderForm */
 
 div.note > textarea {
   height: 75%;

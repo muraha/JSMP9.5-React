@@ -28,7 +28,7 @@ export default class Board extends Component{
 	}
 
 
-  add(text) {
+  add = (text) => {
 		this.setState(prevState => ({
 			notes: [
 				...prevState.notes,
