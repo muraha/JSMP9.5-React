@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import MDEdit from 'react-icons/lib/md/edit'
 import MdDelete from 'react-icons/lib/md/delete'
 import MdSave from 'react-icons/lib/md/save'
+import { connect } from 'react-redux'
 
 import './Note.css'
 
-export default class Note extends Component {
+class Note extends Component {
 	constructor(props) {
 		super(props)
+		console.log(props.dispatch)
 		this.state = {
 			isEditable: false,
 			isCompleted: false,
@@ -76,3 +78,5 @@ export default class Note extends Component {
 		return this.state.isEditable ? this.renderForm() : this.renderDisplay()
 	}
 }
+
+export default connect()(Note)

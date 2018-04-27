@@ -71,7 +71,6 @@ export default class Board extends Component{
 
   render() {
     return (
-      
       <div className='board'>
         <Navigation />  
         <button className='action-button shadow' onClick={this.add.bind(null, '_')} id='add'>

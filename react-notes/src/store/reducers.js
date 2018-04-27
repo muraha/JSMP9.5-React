@@ -1,9 +1,6 @@
 import C from '../constants/constants'
-import { createStore } from 'redux'
 
-const store = createStore(noteActions)
-
-export const noteActions = (state, action) => {
+export default (state = initialState, action) => {
   switch (action.type) {
     case C.ADD_NOTE:
       return action.addNote
@@ -13,17 +10,34 @@ export const noteActions = (state, action) => {
 
     case C.COMPLETE_NOTE:
       return state.isCompleted = !state.isCompleted
-    
+
     case C.ARCHIVE_NOTE:
       return state.isArchived = !state.isArchived
-    
+
     case C.REMOVE_NOTE:
       return action.removeNote
-    
+
     case C.FETCH_NOTES:
       return action.fetchNote
-    
+
     default:
       return state
   }
 }
+
+export const initialState = {
+  "notes": [],
+  /* 
+  {
+    "name": "note-0",
+    "key": 0,
+    "isEditable": false,
+    "isDone": false,
+    "isArchived": false,
+    "value": "Some text 0",
+    "created-date": "2017-12-7"
+    }
+    */
+
+  "placeholder": "TODO: "
+};
