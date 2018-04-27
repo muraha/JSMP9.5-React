@@ -7,7 +7,6 @@
       "isArchived": false,
       "value": "Some text 0",
       "date": "2017-12-7"
-
     },
     {
       "name": "note-1",
@@ -17,7 +16,6 @@
       "isArchived": false,
       "value": "Some asdasd 1",
       "date": "2016-12-7"
-
     },
     {
       "name": "note-2",
@@ -27,7 +25,6 @@
       "isArchived": false,
       "value": "Some qweqwe 2",
       "date": "2018-12-7"
-
     }
   ]
 }
