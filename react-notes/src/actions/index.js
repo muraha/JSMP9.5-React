@@ -35,7 +35,15 @@ export const updateNote = (id, text) => ({
   text
 })
 
+export const setCompleted = (id) => ({
+  type: C.NOTE_SET_COMPLETED,
+  id
+})
 
+export const toArchive = (id) => ({
+  type: C.NOTE_SET_ARCHIVED,
+  id
+})
 
 
 export const setVisibilityFilter = filter => ({
@@ -51,5 +59,5 @@ export const toggleTodo = id => ({
 export const VisibilityFilters = {
   SHOW_ALL: 'SHOW_ALL',
   SHOW_COMPLETED: 'SHOW_COMPLETED',
-  SHOW_ACTIVE: 'SHOW_ACTIVE'
+  SHOW_ACTIVE: 'SHOW_ARCHIVE'
 }

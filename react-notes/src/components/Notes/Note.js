@@ -15,12 +15,6 @@ class Note extends Component {
 		this.state = {
 			isEditable: false,
 		}
-		
-		// this.edit =this.edit.bind(this)
-		// this.remove =  this.remove.bind(this)
-		// this.save = this.save.bind(this)
-		// this.renderForm = this.renderForm.bind(this)
-		// this.renderDisplay = this.renderDisplay.bind(this)
 	}
 
 	componentDidUpdate = () => {
@@ -31,9 +25,6 @@ class Note extends Component {
 			textArea.select()
 		}
 	}
-
-	shouldComponentUpdate = (nextProps, nextState) =>
-			this.props.value !== nextProps.value || this.state !== nextState	
 
 	edit = () => {
 		this.setState({
@@ -56,27 +47,24 @@ class Note extends Component {
   }
    
   markComplete = () => {
-		this.props.onRemove(this.props.index)
+		this.props.onSetComplete(this.props.index)
   }
   
   toArchive = () => {
-		this.props.onRemove(this.props.index)
+		this.props.onMoveToArchive(this.props.index)
   }
 
 	renderForm = () => 
 		<div className="note shadow">
 			<div className="note__container ">
-				<div className="note__item">
 					<textarea wrap='true' autoFocus ref={input => this._newText = input} defaultValue={this.props.text}/>
 					<button onClick={this.save} id="save"><MdSave /></button>
-				</div>
 			</div>
 		</div>
 
-  
 	renderDisplay = () => 
-		<div className="note shadow">
-			<p onDoubleClick={this.edit} placeholder='Doubleclick to edit'> {this.props.text}</p>
+		<div className = {this.props.isCompleted ? 'note shadow note__completed' : "note shadow"}>
+      <p onDoubleClick={this.edit}> {this.props.text} </p>
 			<span>
         <button onClick={this.markComplete} id="complete"><MDComplete /></button>
 				<button onClick={this.toArchive} id="archive"><MDArchive /></button>

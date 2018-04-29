@@ -8,6 +8,12 @@ div.notes__wrapper{
   margin: 0 auto;
 }
 
+div.note__completed{
+  color: #999;
+  text-decoration-line: line-through;
+  background-color: #cfd8dc !important;
+}
+
 div.note {
   height: auto;
   /* background-color: #cfd8dc; */

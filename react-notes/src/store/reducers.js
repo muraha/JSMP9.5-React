@@ -7,7 +7,7 @@ const initialState = {
     "name": "note-0",
     "key": 0,
     "isEditable": false,
-    "isDone": false,
+    "isCompleted": false,
     "isArchived": false,
     "text": "Some text 0",
     "date": "2017-12-7"
@@ -25,8 +25,7 @@ export default (state = initialState, action) => {
           {
             name: "Name-" + action.id,
             key: action.id,
-            isEditable: false,
-            isDone: false,
+            isCompleted: false,
             isArchived: false,
             text: action.text ,
             date: new Date().toJSON().substr(0, 10)
@@ -52,15 +51,20 @@ export default (state = initialState, action) => {
         notes: state.notes.map(note => note.key === action.id ? { ...note, text: action.text } : note)
       }
     
+    case C.NOTE_SET_COMPLETED:
+      console.log('Note # ' + action.id + ' markCompleted Action'); 
+      return {
+        notes: state.notes.map(note => note.key === action.id ? { ...note, isCompleted: !note.isCompleted } : note)
+    }
 
-    case C.COMPLETE_NOTE:
-      return state.isCompleted = !state.isCompleted
+    case C.NOTE_SET_ARCHIVED:
+      console.log('Note # ' + action.id + ' toArchive Action'); 
+      return {
+      notes: state.notes.map(note => note.key === action.id ? { ...note, isArchived: !note.isArchived } : note)
+  }
 
-    case C.ARCHIVE_NOTE:
-      return state.isArchived = !state.isArchived
-
-    case C.FETCH_NOTES:
-      return action.fetchNote
+    // case C.FETCH_NOTES:
+    //   return action.fetchNote
 
     default:
       return state

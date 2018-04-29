@@ -4,7 +4,7 @@ import Note from '../Notes/Note'
 import MdAdd from 'react-icons/lib/md/note-add'
 
 import { connect } from 'react-redux'
-import { addNote, removeNote, updateNote } from '../../actions/index'
+import { addNote, removeNote, updateNote, toArchive, setCompleted } from '../../actions/index'
 
 class Notes extends Component {
  
@@ -19,12 +19,20 @@ class Notes extends Component {
   add = (text = '') => {
    return this.props.addNote(typeof text === 'object' ? 'New note: doubleclick to edit' : text)}
 
-  remove = (key) => {
+   removeHandlert = (key) => {
     this.props.removeNote(key)
   }
 
-  update = (key, newText) => {
+  updateHandler = (key, newText) => {
     this.props.updateNote(key, newText)
+  }
+
+  setCompleteHandler = (key) => {
+    this.props.setCompleted(key)
+  }
+
+  toArchiveHandler = (key) => {
+    this.props.toArchive(key)
   }
 
   eachNote = (note) => {
@@ -32,8 +40,12 @@ class Notes extends Component {
     <Note key={note.key}
       index={note.key}
       text={note.text}
-      onChange={this.update}
-      onRemove={this.remove}
+      isCompleted={note.isCompleted}
+      isArchived={note.isArchived}
+      onChange={this.updateHandler}
+      onRemove={this.removeHandlert}
+      onSetComplete={this.setCompleteHandler}
+      onMoveToArchive={this.toArchiveHandler}
     >
     </Note>
     )}
@@ -64,7 +76,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     addNote: (...args) => dispatch(addNote(...args)),
     removeNote: (...args) => dispatch(removeNote(...args)),
-    updateNote:(...args) => dispatch(updateNote(...args)),
+    updateNote: (...args) => dispatch(updateNote(...args)),
+    setCompleted: (...args) => dispatch(setCompleted(...args)),
+    toArchive: (...args) => dispatch(toArchive(...args)),    
   }
 };
 
