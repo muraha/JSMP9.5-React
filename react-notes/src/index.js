@@ -9,6 +9,7 @@ import './index.css';
 
 
 const store = createStore(reducer)
+
 store.subscribe(()=> console.log(store.getState()))
 
 render(

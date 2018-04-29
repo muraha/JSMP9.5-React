@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
-import MDEdit from 'react-icons/lib/md/edit'
+
 import MdDelete from 'react-icons/lib/md/delete'
 import MdSave from 'react-icons/lib/md/save'
+import MDArchive from 'react-icons/lib/md/archive'
+import MDComplete from 'react-icons/lib/md/check'
+
 import { connect } from 'react-redux'
 
 import './Note.css'
@@ -11,15 +14,13 @@ class Note extends Component {
 		super(props)
 		this.state = {
 			isEditable: false,
-			isCompleted: false,
-			isArchived: false,
 		}
 		
-		this.edit =this.edit.bind(this)
-		this.remove =  this.remove.bind(this)
-		this.save = this.save.bind(this)
-		this.renderForm = this.renderForm.bind(this)
-		this.renderDisplay = this.renderDisplay.bind(this)
+		// this.edit =this.edit.bind(this)
+		// this.remove =  this.remove.bind(this)
+		// this.save = this.save.bind(this)
+		// this.renderForm = this.renderForm.bind(this)
+		// this.renderDisplay = this.renderDisplay.bind(this)
 	}
 
 	componentDidUpdate = () => {
@@ -37,27 +38,36 @@ class Note extends Component {
 	edit = () => {
 		this.setState({
 			isEditable: true,
-		})
-	}
-  
-	remove = () => {
-		this.props.onRemove(this.props.index)
-	}
-
-	save = (e) => {
-		e.preventDefault();
-		this.props.onChange(this._newText.value, this.props.index)
+    })
+  }
+   
+  save = (e) => {
+    e.preventDefault();
+    this._newText.value.trim().length === 0 ? 
+      this.props.onRemove(this.props.index) : 
+      this.props.onChange(this.props.index, this._newText.value)
 		this.setState({
 			isEditable: false,
 		})
 	}
 
+	remove = () => {
+		this.props.onRemove(this.props.index)
+  }
+   
+  markComplete = () => {
+		this.props.onRemove(this.props.index)
+  }
+  
+  toArchive = () => {
+		this.props.onRemove(this.props.index)
+  }
+
 	renderForm = () => 
 		<div className="note shadow">
 			<div className="note__container ">
 				<div className="note__item">
-					<textarea wrap autoFocus ref={input => this._newText = input}
-									defaultValue={this.props.value}/>
+					<textarea wrap='true' autoFocus ref={input => this._newText = input} defaultValue={this.props.text}/>
 					<button onClick={this.save} id="save"><MdSave /></button>
 				</div>
 			</div>
@@ -66,9 +76,10 @@ class Note extends Component {
   
 	renderDisplay = () => 
 		<div className="note shadow">
-			<p>{this.props.value}</p>
+			<p onDoubleClick={this.edit} placeholder='Doubleclick to edit'> {this.props.text}</p>
 			<span>
-				<button onClick={this.edit} id="edit"><MDEdit /></button>
+        <button onClick={this.markComplete} id="complete"><MDComplete /></button>
+				<button onClick={this.toArchive} id="archive"><MDArchive /></button>
 				<button onClick={this.remove} id="remove"><MdDelete /></button>
 			</span>
 		</div>

@@ -9,42 +9,55 @@ const initialState = {
     "isEditable": false,
     "isDone": false,
     "isArchived": false,
-    "content": "Some text 0",
-    "created-date": "2017-12-7"
+    "text": "Some text 0",
+    "date": "2017-12-7"
     }
     */
-  "placeholder": "TODO: "
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
     case C.ADD_NOTE:
+      console.log('Added Note is # ' + action.id);
       return {
-        ...state,
         notes: [
           ...state.notes,
           {
-            name: "Name",
+            name: "Name-" + action.id,
             key: action.id,
-            isEditable: action.isEditable,
+            isEditable: false,
             isDone: false,
             isArchived: false,
-            value: action.value ,
+            text: action.text ,
             date: new Date().toJSON().substr(0, 10)
           }]
-      
       }
+
+    case C.REMOVE_NOTE:
+      console.log('Note # ' + action.id + ' was removed');
+      return {
+        notes: state.notes.filter(note => note.key !== action.id)
+      }
+    
+    // case C.NOTE_SET_EDITABLE:
+    // console.log('Note # ' + action.id + ' set editable');
+    //   return {
+    //     notes: 
+    //       state.notes[action.id].isEditable = action.isEditable
+    //   }
+
     case C.UPDATE_NOTE:
-      return action.updateNote
+    console.log('Note # ' + action.id + ' was updated');    
+      return {
+        notes: state.notes.map(note => note.key === action.id ? { ...note, text: action.text } : note)
+      }
+    
 
     case C.COMPLETE_NOTE:
       return state.isCompleted = !state.isCompleted
 
     case C.ARCHIVE_NOTE:
       return state.isArchived = !state.isArchived
-
-    case C.REMOVE_NOTE:
-      return action.removeNote
 
     case C.FETCH_NOTES:
       return action.fetchNote

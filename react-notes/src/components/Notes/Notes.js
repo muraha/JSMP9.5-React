@@ -1,62 +1,42 @@
 import React, { Component } from 'react'
 import Note from '../Notes/Note'
+
 import MdAdd from 'react-icons/lib/md/note-add'
+
 import { connect } from 'react-redux'
-import { addNote } from '../../actions/index'
+import { addNote, removeNote, updateNote } from '../../actions/index'
 
 class Notes extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      notes: []
-    };
-    this.add = this.add.bind(this)
-    this.eachNote = this.eachNote.bind(this);
-    this.update = this.update.bind(this);
-    this.remove = this.remove.bind(this);
-    this.nextId = this.nextId.bind(this)
-  }
-  
+ 
   componentWillMount = () => {
-    var self = this
     if (this.props.count) {
       fetch(`https://baconipsum.com/api/?type=all-meat&sentences=${this.props.count}`)
         .then(response => response.json())
-        .then(json => json[0].split('. ').forEach(sentence => (self.add(sentence.substring(0, 25)))))
+        .then(json => json[0].split('. ').forEach(sentence => (this.add(sentence.substring(0, 25)))))
     }
   }
 
-  add = (text = '') => 
-    this.props.addNote(text)
-  
-  nextId = () => {
-    this.uniqueId = this.uniqueId || 0
-    return this.uniqueId++
+  add = (text = '') => {
+   return this.props.addNote(typeof text === 'object' ? 'New note: doubleclick to edit' : text)}
+
+  remove = (key) => {
+    this.props.removeNote(key)
   }
 
-  update = (newText, i) => {
-    this.setState(prevState => ({
-      notes: prevState.notes.map(
-        note => (note.id !== i) ? note : { ...note, note: newText }
-      )
-    }))
+  update = (key, newText) => {
+    this.props.updateNote(key, newText)
   }
 
-  remove = (id) => {
-    console.log('remove ' + id);
-    this.setState(prevState => ({
-      notes: prevState.notes.filter(note => note.id !== id)
-    }))
-  }
-
-  eachNote = (note, i) => (
-    <Note key={note.id}
-      index={note.id}
-      value={note.value}
+  eachNote = (note) => {
+    return (
+    <Note key={note.key}
+      index={note.key}
+      text={note.text}
       onChange={this.update}
-      onRemove={this.remove}>
+      onRemove={this.remove}
+    >
     </Note>
-  )
+    )}
 
   render() {
     const { notes } = this.props;
@@ -83,6 +63,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     addNote: (...args) => dispatch(addNote(...args)),
+    removeNote: (...args) => dispatch(removeNote(...args)),
+    updateNote:(...args) => dispatch(updateNote(...args)),
   }
 };
 
