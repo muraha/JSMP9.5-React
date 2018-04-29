@@ -3,7 +3,7 @@ import { render } from 'react-dom';
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import Board from './components/_Board/Board'
-import reducer from './store/reducers'
+import reducer from './store/index'
 
 import './index.css';
 
