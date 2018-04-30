@@ -13,6 +13,7 @@ const constants = {
   SHOW_ARCHIVE: 'SHOW_ARCHIVE',
   SHOW_NEW: 'SHOW_NEW',
   SHOW_COMPLETED: 'SHOW_COMPLETED',
+  SHOW_SEARCH_RESULT: 'SHOW_SEARCH_RESULT',
 }
 
 export default constants

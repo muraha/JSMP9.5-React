@@ -45,15 +45,12 @@ export const toArchive = (id) => ({
   id
 })
 
+export const search = (value) => ({
+  type: C.SHOW_SEARCH_RESULT,
+  value
+})
 
-export const setVisibilityFilter = filter => ({
+export const setVisibilityFilter = (filter) => ({
   type: 'SET_VISIBILITY_FILTER',
   filter
 })
-
-export const VisibilityFilters = {
-  SHOW_ALL: 'SHOW_ALL',
-  SHOW_NEW: 'SHOW_NEW',
-  SHOW_COMPLETED: 'SHOW_COMPLETED',
-  SHOW_ACTIVE: 'SHOW_ARCHIVE'
-}

@@ -11,8 +11,10 @@ export default (state=[], action) => {
             key: action.id,
             isCompleted: false,
             isArchived: false,
-            text: action.text ,
-            date: new Date().toJSON().substr(0, 10)
+            isEditable: false,
+            text: action.text,
+            date: new Date().toJSON().substr(0, 10),
+            _inSearch: true,
           }]
       
 
@@ -34,10 +36,12 @@ export default (state=[], action) => {
     case C.NOTE_SET_ARCHIVED:
       console.log('Note # ' + action.id + ' toArchive Action'); 
       return state.map(note => note.key === action.id ? { ...note, isArchived: !note.isArchived } : note)
-  
 
-    // case C.FETCH_NOTES:
-    //   return action.fetchNote
+    case C.SHOW_SEARCH_RESULT:
+    console.dir(action.value); 
+      return state.map(note => !~note.text.toLowerCase().indexOf(action.value.toLowerCase()) && action.value !== '' ?
+      { ...note, _inSearch: false } :
+      { ...note, _inSearch: true }) 
 
     default:
       return state

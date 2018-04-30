@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import NoteEdit from './NoteEdit';
 
 import MdDelete from 'react-icons/lib/md/delete'
 import MdSave from 'react-icons/lib/md/save'
@@ -60,8 +61,10 @@ export default class Note extends Component {
 	renderForm = () => 
 		<div className="note shadow">
 			<div className="note__container ">
+      <NoteEdit>
 					<textarea wrap='true' autoFocus ref={input => this._newText = input} defaultValue={this.props.text}/>
 					<button onClick={this.save} id="save"><MdSave /></button>
+      </NoteEdit>
 			</div>
 		</div>
 
