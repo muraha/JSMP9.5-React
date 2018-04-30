@@ -60,7 +60,7 @@ const getVisibleTodos = (notes, filter) => {
     case C.SHOW_ARCHIVE:
       return notes.filter(t => t.isArchived);
     case C.SHOW_SEARCH_RESULT:
-      return notes.filter(t => t._inSearch)
+      return notes.filter(t => t._inSearch && !t.isArchived)
     default:
       throw new Error("Unknown filter: " + filter);
   }
