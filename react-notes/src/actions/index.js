@@ -51,13 +51,9 @@ export const setVisibilityFilter = filter => ({
   filter
 })
 
-export const toggleTodo = id => ({
-  type: 'TOGGLE_TODO',
-  id
-})
-
 export const VisibilityFilters = {
   SHOW_ALL: 'SHOW_ALL',
+  SHOW_NEW: 'SHOW_NEW',
   SHOW_COMPLETED: 'SHOW_COMPLETED',
   SHOW_ACTIVE: 'SHOW_ARCHIVE'
 }

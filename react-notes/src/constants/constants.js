@@ -8,7 +8,11 @@ const constants = {
   FETCH_NOTES: "FETCH_NOTES",
   
 
-  SHOW_ALL: "SHOW_ALL",
+  SHOW_ALL: 'SHOW_ALL',
+  TOGGLE_VIEW: 'TOGGLE_VIEW',
+  SHOW_ARCHIVE: 'SHOW_ARCHIVE',
+  SHOW_NEW: 'SHOW_NEW',
+  SHOW_COMPLETED: 'SHOW_COMPLETED',
 }
 
 export default constants

@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 import Note from '../Notes/Note'
-
+import C from '../../constants/constants'
 import MdAdd from 'react-icons/lib/md/note-add'
-
 import { connect } from 'react-redux'
-import { addNote, removeNote, updateNote, toArchive, setCompleted } from '../../actions/index'
+import { addNote, removeNote, updateNote, toArchive, setCompleted } from '../../actions'
 
 class Notes extends Component {
  
@@ -50,7 +49,7 @@ class Notes extends Component {
     </Note>
     )}
 
-  render() {
+    render() {
     const { notes } = this.props;
     return (
       <div>
@@ -66,11 +65,24 @@ class Notes extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    notes: state.notes
+const getVisibleTodos = (notes, filter) => {
+  switch (filter) {
+    case C.SHOW_ALL:
+      return notes.filter(t => !t.isArchived);
+    case C.SHOW_NEW:
+      return notes.filter(t => !t.isCompleted && !t.isArchived);
+    case C.SHOW_COMPLETED:
+      return notes.filter(t => t.isCompleted && !t.isArchived);
+    case C.SHOW_ARCHIVE:
+      return notes.filter(t => t.isArchived);
+    default:
+      throw new Error("Unknown filter: " + filter);
   }
-};
+}  
+
+const mapStateToProps = state => ({ 
+  notes: getVisibleTodos(state.notes, state.visibilityFilter)
+});
 
 const mapDispatchToProps = (dispatch) => {
   return {

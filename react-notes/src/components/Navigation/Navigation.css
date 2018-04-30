@@ -2,6 +2,7 @@ nav {
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
+  font-size: 10px;
 }
 
 nav:nth-child(n){

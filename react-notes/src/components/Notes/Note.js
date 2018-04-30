@@ -3,13 +3,12 @@ import React, { Component } from 'react';
 import MdDelete from 'react-icons/lib/md/delete'
 import MdSave from 'react-icons/lib/md/save'
 import MDArchive from 'react-icons/lib/md/archive'
-import MDComplete from 'react-icons/lib/md/check'
-
-import { connect } from 'react-redux'
+import MDUnArchive from 'react-icons/lib/md/unarchive'
+import MDComplete from 'react-icons/lib/md/check-box'
 
 import './Note.css'
 
-class Note extends Component {
+export default class Note extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
@@ -24,7 +23,11 @@ class Note extends Component {
 			textArea.focus()
 			textArea.select()
 		}
-	}
+  }
+  
+  shouldComponentUpdate = (nextProps, nextState) =>
+  /** @TODO: change, cuz currently it is not working */ 
+  this.props !== nextProps || this.state !== nextState    
 
 	edit = () => {
 		this.setState({
@@ -62,19 +65,32 @@ class Note extends Component {
 			</div>
 		</div>
 
-	renderDisplay = () => 
-		<div className = {this.props.isCompleted ? 'note shadow note__completed' : "note shadow"}>
+  renderDisplay = () => {
+    const {isCompleted, isArchived} = this.props
+    return (   
+    <div className =
+      {isCompleted && isArchived ? 
+      'note shadow note__completed note__archived' : 
+      isCompleted && !isArchived ?
+      'note shadow note__completed' :
+      !isCompleted && isArchived ?
+      'note shadow note__archived' :
+      "note shadow"}>
+
       <p onDoubleClick={this.edit}> {this.props.text} </p>
 			<span>
         <button onClick={this.markComplete} id="complete"><MDComplete /></button>
-				<button onClick={this.toArchive} id="archive"><MDArchive /></button>
+        <button onClick={this.toArchive} id="archive">
+        {!isArchived ?
+        <MDArchive /> :
+        <MDUnArchive /> }</button>
 				<button onClick={this.remove} id="remove"><MdDelete /></button>
 			</span>
-		</div>
-
+		</div>)
+  }
 	render() {
 		return this.state.isEditable ? this.renderForm() : this.renderDisplay()
 	}
 }
 
-export default connect()(Note)
+
