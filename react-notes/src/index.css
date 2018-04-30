@@ -1,5 +1,28 @@
-body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
+@import url(https://fonts.googleapis.com/css?family=Roboto);
+
+body,
+html,
+div.board,
+div#react-container {
+    background-color: #e8e8e8;
 }
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.shadow {
+    box-shadow: 0px 2px 1px 0 rgba(0, 0, 0, .2);
+    transition: box-shadow .2s ease-in
+}
+
+.shadow:hover {
+    box-shadow: 0px 3px 15px 0 rgba(0, 0, 0, .5);
+}
+
+.action-button {
+    /* background-color: #5cb85c; */
+    cursor: pointer;
+    padding: 10px;
+  }

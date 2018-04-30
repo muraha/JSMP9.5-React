@@ -1,0 +1,10 @@
+const constants = {
+  ADD_NOTE: "ADD_NOTE",
+  UPDATE_NOTE: "UPDATE_NOTE",
+  REMOVE_NOTE: "REMOVE_NOTE",
+  ARCHIVE_NOTE: "ARCHIVE_NOTE",
+  COMPLETE_NOTE: "COMPLETE_NOTE",
+	FETCH_NOTES: "FETCH_NOTES",
+}
+
+export default constants

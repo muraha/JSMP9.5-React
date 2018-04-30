@@ -1,0 +1,85 @@
+/* renderDisplay */
+
+div.notes__wrapper{
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: start;
+  align-content: center;
+  margin: 0 auto;
+}
+
+div.note {
+  height: auto;
+  /* background-color: #cfd8dc; */
+  background-color: #80d8ff;
+  margin: 5px;
+  padding: 15px;
+  position: relative;
+  display: flex;
+  max-width: 400px;
+  min-width: 200px;
+  flex: 1 1;
+}
+
+div.note p {
+  font-size: 18px;
+  font-family: 'Roboto Slab','Times New Roman',serif;
+  word-wrap: break-word;
+  width: 100%;
+  margin-top: 0
+}
+
+div.note:hover > span {
+  opacity: 1;
+}
+
+div.note > span {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  opacity: 0;
+  transition: opacity .25s linear;
+}
+
+div.note button {
+  margin: 2px;
+  background: none;
+  border: 0;
+  padding: 5px;
+  opacity: 0.4;
+  transition: opacity 0.2s ease-in;
+}
+
+div.note button:hover {
+  opacity: 1;
+}
+
+div.note button:not(:last-child) {
+  margin-right:5px; 
+}
+
+
+/* renderForm */
+
+div.note > textarea {
+  height: 75%;
+  background: rgba(255, 255, 255, .5);
+}
+
+div.note #save {
+  /* background-color: #5cb85c; */
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+div.note textarea {
+  min-height: 100%;
+  width:100%;
+  border: none;
+  padding: 0;
+  background-color: #80d8ff;
+  outline: none;
+  font-size: 18px;
+  font-family: 'Roboto Slab','Times New Roman',serif;
+}
