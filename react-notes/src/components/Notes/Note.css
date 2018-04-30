@@ -1,11 +1,34 @@
-/* renderDisplay */
-
 div.notes__wrapper{
   display: flex;
   flex-flow: row wrap;
   justify-content: start;
   align-content: center;
   margin: 0 auto;
+}
+
+/* renderDisplay */
+
+div.note__completed {
+  color: #999;
+  text-decoration-line: line-through;
+  background-color: #cfd8dc !important;
+}
+
+div.note__completed p {
+  font-style:italic;
+  background-color: #cfd8dc !important;
+  border-bottom: 1px solid #81888b !important;
+}
+
+div.note__archived {
+  font-style:italic;
+  background-color: #f1eb96 !important;
+}
+
+div.note__archived p {
+  font-style:italic;
+  background-color: #f1eb96 !important;
+  border-bottom: 1px solid #e7ad42 !important;
 }
 
 div.note {
@@ -22,11 +45,11 @@ div.note {
 }
 
 div.note p {
-  font-size: 18px;
-  font-family: 'Roboto Slab','Times New Roman',serif;
   word-wrap: break-word;
   width: 100%;
-  margin-top: 0
+  margin-top: 0;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #42a6d1
 }
 
 div.note:hover > span {
@@ -46,12 +69,17 @@ div.note button {
   background: none;
   border: 0;
   padding: 5px;
-  opacity: 0.4;
+  opacity: 0.25;
   transition: opacity 0.2s ease-in;
+  outline: none;
 }
 
 div.note button:hover {
   opacity: 1;
+}
+
+div.note button:active {
+  color: #00b3ff;
 }
 
 div.note button:not(:last-child) {
@@ -80,6 +108,4 @@ div.note textarea {
   padding: 0;
   background-color: #80d8ff;
   outline: none;
-  font-size: 18px;
-  font-family: 'Roboto Slab','Times New Roman',serif;
 }

@@ -3,7 +3,9 @@ div.board {
 }
 
 div.board button {
-  font-size: 18px;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: 'Roboto Slab','Times New Roman',serif;
   /* box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.55); */
 }
 

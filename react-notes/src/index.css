@@ -1,4 +1,9 @@
-@import url(https://fonts.googleapis.com/css?family=Roboto);
+@import url('https://fonts.googleapis.com/css?family=Roboto+Slab:400,700');
+
+* {
+  font-size: 18px;
+  font-family: 'Roboto Slab','Times New Roman',serif;
+}
 
 body,
 html,

@@ -1,13 +1,19 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
-import './index.css';
-import Board from './components/Board/Board'
-import registerServiceWorker from './registerServiceWorker';
+import { render } from 'react-dom';
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
+import Board from './components/_Board/Board'
+import reducer from './store/index'
 
-ReactDOM.render(
-  <BrowserRouter>
-    <Board count={5} />
-  </BrowserRouter>,
+import './index.css';
+
+
+const store = createStore(reducer)
+
+store.subscribe(()=> console.log(store.getState()))
+
+render(
+  <Provider store={store}>
+      <Board/>
+  </Provider>,
   document.getElementById('root'));
-registerServiceWorker();
