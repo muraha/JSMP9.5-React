@@ -18,22 +18,6 @@ class Notes extends Component {
   add = (text = '') => {
    return this.props.addNote(typeof text === 'object' ? 'New note: doubleclick to edit' : text)}
 
-   removeHandlert = (key) => {
-    this.props.removeNote(key)
-  }
-
-  updateHandler = (key, newText) => {
-    this.props.updateNote(key, newText)
-  }
-
-  setCompleteHandler = (key) => {
-    this.props.setCompleted(key)
-  }
-
-  toArchiveHandler = (key) => {
-    this.props.toArchive(key)
-  }
-
   eachNote = (note) => {
     return (
     <Note key={note.key}
@@ -41,10 +25,10 @@ class Notes extends Component {
       text={note.text}
       isCompleted={note.isCompleted}
       isArchived={note.isArchived}
-      onChange={this.updateHandler}
-      onRemove={this.removeHandlert}
-      onSetComplete={this.setCompleteHandler}
-      onMoveToArchive={this.toArchiveHandler}
+      onChange={this.props.updateNote}
+      onRemove={this.props.removeNote}
+      onSetComplete={this.props.setCompleted}
+      onMoveToArchive={this.props.toArchive}
     >
     </Note>
     )}
