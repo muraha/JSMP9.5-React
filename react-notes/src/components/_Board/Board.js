@@ -7,7 +7,7 @@ import './Board.css'
 const Board = () => (
   <div className='board'>
     <Navigation />  
-    <Notes count={100}/>
+    <Notes count={10}/>
   </div>  
 )
 

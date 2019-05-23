@@ -1,7 +1,7 @@
 div.notes__wrapper{
   display: flex;
   flex-flow: row wrap;
-  justify-content: start;
+  justify-content: flex-start;
   align-content: center;
   margin: 0 auto;
 }

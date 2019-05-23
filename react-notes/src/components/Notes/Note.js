@@ -95,5 +95,3 @@ export default class Note extends Component {
 		return this.state.isEditable ? this.renderForm() : this.renderDisplay()
 	}
 }
-
-

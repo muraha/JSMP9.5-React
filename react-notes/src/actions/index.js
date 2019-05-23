@@ -1,8 +1,9 @@
 import C from '../constants/constants'
-
+let uniqueId = 0
 const nextId = () => {
-  this.uniqueId = this.uniqueId || 0
-  return this.uniqueId++
+  // this.uniqueId = this.uniqueId || 0
+  // return this.uniqueId++
+    return uniqueId++
 }
 
 const date = () => {
